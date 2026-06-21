@@ -3,21 +3,33 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "Web UI for the car-insurance estimator (future quote form).",
+  "description": "Web UI for the car-insurance estimator (quote form app shell).",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
+    "dev": "vite",
     "build": "tsc -b",
+    "build:app": "vite build",
+    "preview": "vite preview",
     "typecheck": "tsc -b",
     "test": "vitest run"
   },
   "dependencies": {
-    "@car-insurance/core": "workspace:*"
+    "@car-insurance/core": "workspace:*",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.1.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "jsdom": "^25.0.1",
+    "vite": "^6.0.5",
     "vitest": "^3.2.4"
   }
 }
