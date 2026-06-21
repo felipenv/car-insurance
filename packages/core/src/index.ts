@@ -1,37 +1,30 @@
 /**
  * Framework-agnostic core for the car-insurance estimator.
  *
- * Public entry point. It re-exports the frozen rating contract (the types and
- * provider interface that the rating model in feature #3 and the WEB UI in
- * feature #4 build against) plus the `rate()` engine that computes a premium
- * from validated inputs and an injected provider.
+ * Public entry point. It re-exports the frozen WEB↔CORE rating contract (the
+ * `QuoteInput` / `RatedFactor` / `QuoteResult` types and the ordering/key
+ * constants) plus the `rateQuote()` engine that computes the authoritative
+ * premium and the ordered factor breakdown WEB renders.
  */
 
-// The rating engine: rate(inputs, provider) -> RatingResult.
-export { rate } from "./rating/engine.js";
+// The rating engine: rateQuote(input) -> QuoteResult.
+export { rateQuote } from "./rateQuote.js";
 
-// The illustrative v1 rating provider (feature #3): a conforming RatingProvider
-// the engine rates against until a real Harel service replaces it. Changes the
-// numbers only, never the contract.
-export { IllustrativeRatingProvider } from "./rating/illustrative-rating-provider.js";
-
-// Frozen rating contract. Value exports (the ordering/key tuples) and type
-// exports are split because `verbatimModuleSyntax` forbids mixing them.
-export { COVERAGE_TIERS, FACTOR_ORDER } from "./rating/types.js";
+// Frozen rating contract. Value exports (the ordering/identifier tuples) and
+// type exports are split because `verbatimModuleSyntax` forbids mixing them.
+export { COVERAGE_TIERS, FACTOR_ORDER } from "./types.js";
 export type {
   CoverageTier,
-  FactorId,
-  FactorLine,
-  FactorResolution,
-  QuoteInputs,
-  RatingProvider,
-  RatingResult,
-} from "./rating/types.js";
+  FactorKey,
+  QuoteInput,
+  QuoteResult,
+  RatedFactor,
+} from "./types.js";
 
-/** Scoped package name; placeholder export retained until the engine ships. */
+/** Scoped package name; placeholder export consumed by the WEB baseline. */
 export const CORE_PACKAGE_NAME = "@car-insurance/core" as const;
 
-/** Returns the CORE package name. Exists only to give WEB something to import. */
+/** Returns the CORE package name. Kept as a stable smoke-test export for WEB. */
 export function corePackageName(): string {
   return CORE_PACKAGE_NAME;
 }
