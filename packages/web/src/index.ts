@@ -10,6 +10,9 @@ import { corePackageName } from "@car-insurance/core";
 /** Scoped package name for WEB. */
 export const WEB_PACKAGE_NAME = "@car-insurance/web" as const;
 
+// The application shell: wires form → engine → result (FR5/FR10).
+export { App } from "./App.js";
+
 /** Proves the CORE project reference resolves at compile time. */
 export function describesCore(): string {
   return `${WEB_PACKAGE_NAME} depends on ${corePackageName()}`;
