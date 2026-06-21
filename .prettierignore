@@ -1,0 +1,8 @@
+# Generated / vendored — not ours to format.
+node_modules/
+**/dist/
+**/coverage/
+*.tsbuildinfo
+
+# Lockfile is managed by pnpm; never reformat it.
+pnpm-lock.yaml
