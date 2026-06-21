@@ -10,6 +10,11 @@
 // The rating engine: rate(inputs, provider) -> RatingResult.
 export { rate } from "./rating/engine.js";
 
+// The illustrative v1 rating provider (feature #3): a conforming RatingProvider
+// the engine rates against until a real Harel service replaces it. Changes the
+// numbers only, never the contract.
+export { IllustrativeRatingProvider } from "./rating/illustrative-rating-provider.js";
+
 // Frozen rating contract. Value exports (the ordering/key tuples) and type
 // exports are split because `verbatimModuleSyntax` forbids mixing them.
 export { COVERAGE_TIERS, FACTOR_ORDER } from "./rating/types.js";
