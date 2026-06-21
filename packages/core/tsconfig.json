@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  // Framework-agnostic CORE library. Extends the shared base and emits
+  // declarations + JS into ./dist so WEB can consume it via a project
+  // reference (see ../web/tsconfig.json).
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "include": ["src/**/*"]
+}

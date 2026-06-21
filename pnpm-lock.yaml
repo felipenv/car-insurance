@@ -12,6 +12,14 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3
 
+  packages/core: {}
+
+  packages/web:
+    dependencies:
+      '@car-insurance/core':
+        specifier: workspace:*
+        version: link:../core
+
 packages:
 
   typescript@6.0.3:
