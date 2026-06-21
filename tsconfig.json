@@ -1,0 +1,7 @@
+{
+  // Solution-style root config: `tsc -b` builds every referenced package in
+  // dependency order. References are added as workspace members land
+  // (e.g. { "path": "packages/core" }, { "path": "packages/web" }).
+  "files": [],
+  "references": []
+}
