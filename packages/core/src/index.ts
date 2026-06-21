@@ -1,13 +1,29 @@
 /**
  * Framework-agnostic core for the car-insurance estimator.
  *
- * Intentionally trivial baseline: it proves the package compiles and can be
- * consumed by WEB through a TypeScript project reference. The real rating
- * engine, swappable provider interface, and model factors land in later
- * features — nothing here should anticipate them.
+ * Public entry point. It re-exports the frozen rating contract (the types and
+ * provider interface that the rating model in feature #3 and the WEB UI in
+ * feature #4 build against) plus the `rate()` engine that computes a premium
+ * from validated inputs and an injected provider.
  */
 
-/** Scoped package name; placeholder export until the rating engine exists. */
+// The rating engine: rate(inputs, provider) -> RatingResult.
+export { rate } from "./rating/engine.js";
+
+// Frozen rating contract. Value exports (the ordering/key tuples) and type
+// exports are split because `verbatimModuleSyntax` forbids mixing them.
+export { COVERAGE_TIERS, FACTOR_ORDER } from "./rating/types.js";
+export type {
+  CoverageTier,
+  FactorId,
+  FactorLine,
+  FactorResolution,
+  QuoteInputs,
+  RatingProvider,
+  RatingResult,
+} from "./rating/types.js";
+
+/** Scoped package name; placeholder export retained until the engine ships. */
 export const CORE_PACKAGE_NAME = "@car-insurance/core" as const;
 
 /** Returns the CORE package name. Exists only to give WEB something to import. */
