@@ -18,6 +18,12 @@ export function describesCore(): string {
 // The quote form and its validation surface (FR1–FR4).
 export { QuoteForm, TIER_NOTE } from "./components/QuoteForm.js";
 export type { QuoteFormProps } from "./components/QuoteForm.js";
+
+// The result UI: premium, ordered price waterfall, and disclaimer (FR6/FR7/FR9).
+export { DISCLAIMER, QuoteResult } from "./components/QuoteResult.js";
+export type { QuoteResultProps } from "./components/QuoteResult.js";
+export { buildWaterfall } from "./lib/waterfall.js";
+export type { Waterfall, WaterfallStep } from "./lib/waterfall.js";
 export {
   EMPTY_FORM_VALUES,
   FORM_FIELDS,
