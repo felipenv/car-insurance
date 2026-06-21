@@ -14,3 +14,19 @@ export const WEB_PACKAGE_NAME = "@car-insurance/web" as const;
 export function describesCore(): string {
   return `${WEB_PACKAGE_NAME} depends on ${corePackageName()}`;
 }
+
+// The quote form and its validation surface (FR1–FR4).
+export { QuoteForm, TIER_NOTE } from "./components/QuoteForm.js";
+export type { QuoteFormProps } from "./components/QuoteForm.js";
+export {
+  EMPTY_FORM_VALUES,
+  FORM_FIELDS,
+  MESSAGES,
+  validateQuoteForm,
+} from "./validation.js";
+export type {
+  FieldErrors,
+  QuoteFieldKey,
+  QuoteFormValues,
+  ValidationResult,
+} from "./validation.js";
