@@ -3,9 +3,12 @@
  *
  * Public entry point. It re-exports the frozen rating contract (the types and
  * provider interface that the rating model in feature #3 and the WEB UI in
- * feature #4 build against). The `rate()` engine itself lands in a later
- * feature; this package currently ships the contract surface only.
+ * feature #4 build against) plus the `rate()` engine that computes a premium
+ * from validated inputs and an injected provider.
  */
+
+// The rating engine: rate(inputs, provider) -> RatingResult.
+export { rate } from "./rating/engine.js";
 
 // Frozen rating contract. Value exports (the ordering/key tuples) and type
 // exports are split because `verbatimModuleSyntax` forbids mixing them.

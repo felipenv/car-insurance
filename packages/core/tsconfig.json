@@ -9,5 +9,8 @@
     "outDir": "dist"
   },
   "include": ["src/**/*"],
-  "exclude": ["src/**/*.test.ts"]
+  // Test files and test-only fixtures are excluded from the emitted library:
+  // they exercise the engine via Vitest (which transpiles them itself) but must
+  // not ship in ./dist.
+  "exclude": ["src/**/*.test.ts", "src/**/__fixtures__/**"]
 }
