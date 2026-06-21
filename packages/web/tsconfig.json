@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  // WEB consumes CORE from source via a TypeScript project reference, so
+  // `tsc -b` builds CORE first and resolves the @car-insurance/core import
+  // against its emitted declarations.
+  //
+  // WEB is the browser app (Vite + React), so it overrides the Node-oriented
+  // base defaults: the DOM libs and the react-jsx runtime are in scope here,
+  // and module resolution is "Bundler" to match how Vite resolves imports
+  // (CORE stays on NodeNext — the framework-agnostic boundary).
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx"
+  },
+  "references": [{ "path": "../core" }],
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
+}

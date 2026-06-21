@@ -1,0 +1,14 @@
+packages:
+  - "packages/*"
+
+# Approve the dependency build scripts we trust. esbuild (pulled in by Vitest
+# and Vite) links its platform-native binary in a postinstall step; without
+# this pnpm leaves the build "ignored", `pnpm install --frozen-lockfile` exits
+# non-zero, and its verify-deps-before-run check then fails every `pnpm run`.
+# Only build scripts approved here are allowed to run.
+#
+# NOTE: the pinned pnpm (11.8.0) reads the `allowBuilds` map, not the older
+# `onlyBuiltDependencies` list — the list is still parsed into config but is no
+# longer honored when deciding which builds to run, so it must be `allowBuilds`.
+allowBuilds:
+  esbuild: true
