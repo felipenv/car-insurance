@@ -44,3 +44,24 @@ Run from the repo root; they cover both packages.
   `pnpm lint` also runs `scripts/check-core-boundary.mjs`, which lints a
   deliberately-broken fixture (`packages/core/__fixtures__/`) and fails if a web
   import is _not_ rejected — a regression guard for the boundary itself.
+
+## Green baseline
+
+The baseline is "green" when, from a fresh clone, the documented commands all
+succeed with no errors:
+
+```sh
+corepack enable
+pnpm install --frozen-lockfile
+pnpm build
+pnpm lint
+pnpm format:check
+pnpm test
+```
+
+CI (`.github/workflows/ci.yml`) runs exactly these steps on every push and pull
+request to `main`, so a passing local run mirrors a passing CI run. This green
+signal gates the start of downstream features; keep it green.
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for how to add a package and the
+conventions later features follow.
