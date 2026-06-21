@@ -1,0 +1,45 @@
+name: CI
+
+# Reproducible baseline check: frozen install then the same root scripts
+# developers run locally (AC9). Any failing step fails the run (AC7).
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # corepack provisions the pnpm version pinned in package.json
+      # ("packageManager"). Enable it before setup-node so the pnpm cache
+      # can resolve the lockfile.
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      # Frozen install reproduces the committed lockfile exactly; it fails
+      # if pnpm-lock.yaml is missing or out of date (AC8/FR11).
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Format check
+        run: pnpm format:check
+
+      - name: Test
+        run: pnpm test
