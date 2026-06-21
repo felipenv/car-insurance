@@ -9,5 +9,6 @@
     "outDir": "dist"
   },
   "references": [{ "path": "../core" }],
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.ts"]
 }
