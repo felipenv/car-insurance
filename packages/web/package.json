@@ -1,0 +1,23 @@
+{
+  "name": "@car-insurance/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Web UI for the car-insurance estimator (future quote form).",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "typecheck": "tsc -b",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@car-insurance/core": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  }
+}

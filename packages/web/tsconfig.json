@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  // WEB consumes CORE from source via a TypeScript project reference, so
+  // `tsc -b` builds CORE first and resolves the @car-insurance/core import
+  // against its emitted declarations. No bundler in the baseline.
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+  },
+  "references": [{ "path": "../core" }],
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.ts"]
+}

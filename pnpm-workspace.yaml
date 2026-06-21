@@ -1,0 +1,9 @@
+packages:
+  - "packages/*"
+
+# Approve the dependency build scripts we trust. esbuild (pulled in by Vitest)
+# links its platform-native binary in a postinstall step; without this pnpm
+# leaves the build "ignored" and its verify-deps-before-run check fails every
+# `pnpm run`. Only build scripts listed here are allowed to run.
+onlyBuiltDependencies:
+  - esbuild
